@@ -1,0 +1,122 @@
+\section{Introduction}
+\protect\label{section:intro}
+
+\engdate
+
+This report is an analysis of the observational data from the REM (Rapid Eye
+Mount) camera in La Silla, Chile, operated by the Red Dots Project, This work
+commencing in March 2015. \footnote{See \texttt{https://reddots.space/}}. In
+this project a series of observations are made of a patch of sky in the vicinity of particular target using four visual
+light filters on the ROS2 telescope and 3 infrared filters on the REMIR
+telescope. The images from the visbile light telescope are 1024 by 1-24 pixels, although
+the effective area is only 900 by 900 and the images from the infrared are 512
+by 512 pixels. In each case a 16-bit CCD records the counts for exach pixel.
+Flat field and bias frames are only available for the visible light cases.
+
+The primary targets are \rdwarf s, although observations are made of other types
+of star during the course of each night.In this report, only the {\rdwarf} observations are considered and only the
+visible light cases.
+
+\subsection{Targets}
+
+The three main targets of the REM observations are \prox, {\bstar} and Ross 154,
+all \rdwarf s of spectral types M6, M4 and M3.5 respectively and 4.2, 6 and 9.6
+ly distant, putting them at nearest, fourth nearest and eleventh nearest known
+stellar objects to the solar system.The main subject of study is the
+identification of periodic signals in the light curves.
+
+\subsubsection{\prox}
+{\prox} is of perennial interest as the closest star to the solar system, at 4.2 ly. It is of spectral type M5.5.
+Despite the interest and available data, calculations of the the rotation period
+of {\prox} have varied over the years.  Studies have reported periods
+ranging from the $ 31.5 \pm 1.5 $ days of \citet{guinan96}, the 41.3 days of \citet{benedict93}
+and s between 82 and 84 days in \citealt{benedict92,benedict98}.  \citet{kurster99} found that the period is not less
+than 50 days, whilst more recently \citet{kiraga07} reported a value of 82.5
+days. All these estimates were based on photometric measurements \citet[Table 3]{suarezmascareno15} reported a value of 116.6 days, using a
+measurement of {\ha}. In \citet{collins17} the rotation periods was calculated
+ast 82.6 $\pm$ 0.1 days, based primarily on photometric evidence, with some
+support from spectroscopic analysis of an {\ha} peak.
+
+In 2016 a planet of 1.3 Earth mass was reported in the habitable
+zone of \prox, known as {\prox} b. \citep{angladaescude16}. Its orbital period was calculated as just over 11
+days. The following year further studies have suggested dust belts \citep{anglada17} but yet furhter
+studies have suggested that a large flare affected those results \citep{macgregor18}.
+
+THe frequent flare activity is unusual in a star of slow rotation like \prox,
+previous studies such as In \citet{mohanty03} setting out the correlation
+between the projected otational velocity {\vsini} and the
+activity in mid-M to L-dwarfs, In \citet{vida19} the flaring activity was
+calculated as 1.49 events per day. with ``superflares'' approximately 3 times a
+year and flares a magntude larger every other year.
+
+Such frequent flaring, as well as compromising the habitability of {\prox} b,
+is clearly likely to interfere with measurements of periodicity. It is highly
+likely that many of the observations of {\prox} analysed here are affected by
+flares.
+
+Together with the rest of the Alpha Centauri system, the age of {\prox} has been
+estimated at $5.26 \pm 0.95$ Gyr, slightly older than the Sun \citep{joyce18}.
+
+As shown in Table \ref{table:obstargets}, the bulk of the observations taken
+by the Red Dots project are of \prox.
+
+\subsubsection{\bstar}
+{\bstar} is, at just under 6ly, the fourth closest star to the solar system after {\prox} and Alpha Centauri A and B. It is of spectral type M4.
+It is particularly notable for its very large proper motion of −802.803 mas/yr in Right Ascension and 10,362.542 mas/yr in Declination., the largest of all
+stars relative to the solar system. This is combined with a high radial velocity of $-110.6$ km/s \citep{bobylev17}.
+The high radial velocity of {\bstar} will bring it close enough
+to the solar system to rival or perhaps surpass {\prox} in approximatelyr 10,000 years as estimated by \citet{bobylev10}.
+Its rotation period has been progressively given as 130 days in
+\citet{benedict98}, 148.6 days in \citet{suarezmascareno15} and 145 $\pm$ 15 days in \citet{toledopadron18}. Activity is low, as noted in the latter.
+It has an estimated age of between 7 to 10 Gyr \citep{ribas18}.
+
+\monthonly
+\newdate{firstbs}{1}{8}{2017} 
+
+{\bstar} is of particular interest at the moment, following the announcement of
+a planet companion, also noted in \citet{ribas18}, and this report has focused
+upon it, espacially as the low activity reduces interference from that source
+with periodicity calculations.
+Of the observations listed in Table \ref{table:filtersnums}, the corresponding observations for {\bstar} are listed in Table \ref{table:bstarsumm}. Observations were taken between August 2017 and
+\date{\today}. Due to the high proper motion, care has to be taken to correctly take this into account when identifying it in images.
+
+\begin{table}[!htbp]
+\begin{center}
+\begin{tabular}{lr} \hline
+Filter & Number \\\hline
+g & 1,415 \\
+i & 1,414 \\
+r & 1,414 \\
+z & 1,415 \\
+H & 2,264 \\
+J & 5,557 \\
+K & 2,130 \\
+\hline
+\end{tabular}
+\end{center}
+\caption{List of observations to date of \bstar. All were made between
+\displaydate{firstbs} and \date{\today}}.
+\protect\label{table:bstarsumm}
+\end{table}
+\engdate
+
+\subsubsection{Ross 154}
+Ross 154 is 9.6 ly distant, of spectral type M3.5. It has a reasonably high
+proper motion of −+637.02 mas/yr in Right Ascension and  –191.64 mas/yr in
+Declination and a radial velocity of –10.7 km/s \citep{vanleeuwen07}.
+
+The strong activity is noted in \citet{wargelin08}. Previously, in
+\citet{jarrett76}, an activity cycle of about 2 days was reported.
+
+Nowhere reports a rotation period, however a maximum figure for the rotation
+period of $3.5 \pm 1.5$ days can be calculated from the rotational
+velocity (\vsini) of $5 \pm 1.5$ km/s fiven in \citet{wargelin08} and the radius of 0.24 solar given in
+\citet{johnson83}. If the inclination is other than 90\degree the rotation
+period will be shorter by a factor of the sine of the inclination angle.
+It would be useful to obtain a figure for the rotation period as no planets have
+been reported for Ross 154 and a low inclination angle might be one of the
+reasons.
+
+\citet{wargelin08} also state that the fast rotation period is indicative of a
+n age of less than 1 Gyr.
+

@@ -1,0 +1,27 @@
+name: Remfits
+files: /home/jmc/src/astro/reports/remfits/conclusions.tex
+files: /home/jmc/src/astro/reports/remfits/results.tex
+files: /home/jmc/src/astro/reports/remfits/tools.tex
+files: /home/jmc/src/astro/reports/remfits/titlestuff.tex
+files: /home/jmc/src/astro/reports/remfits/report.tex
+files: /home/jmc/src/astro/reports/remfits/introduction.tex
+basedir: /home/jmc/src/astro/reports/remfits/
+basefile: report.tex
+template: 
+view_bars: 33
+word_wrap: 1
+searchlist: modelling
+searchlist: a2017ref123
+searchlist: rotation
+searchlist: cite
+searchlist: \pm
+recent_files: /home/jmc/src/astro/reports/remfits/conclusions.tex
+recent_files: /home/jmc/src/astro/reports/remfits/results.tex
+recent_files: /home/jmc/src/astro/reports/remfits/tools.tex
+recent_files: /home/jmc/src/astro/reports/remfits/titlestuff.tex
+recent_files: /home/jmc/src/astro/reports/remfits/report.tex
+recent_files: /home/jmc/src/astro/reports/remfits/introduction.tex
+recent_files: /home/jmc/src/astro/reports/remfits/modelling.tex
+recent_files: /home/jmc/src/astro/reports/remfits/gravdarkening.tex
+opendir: /home/jmc/src/astro/reports/remfits
+savedir: /home/jmc/src/astro/reports/remfits

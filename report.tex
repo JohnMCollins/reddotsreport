@@ -1,0 +1,106 @@
+\documentclass[a4paper]{article}
+\usepackage[top=0.75in, bottom=0.5in, left=1in, right=1in]{geometry}
+%\usepackage[titletoc]{appendix}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{natbib}
+\usepackage{aas_macros}
+\usepackage{fancyvrb}
+\usepackage{gensymb}
+\usepackage{appendix}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage[UKenglish]{datetime}
+
+% Graphics type
+\usepackage[pdftex]{graphicx}
+
+\newcommand\prox{Proxima Centauri}
+\newcommand\bstar{Barnard's Star}
+\newcommand\rdwarf{M-dwarf}
+\newcommand\ldwarf{L-dwarf}
+\newcommand{\bvec}[1]{\mbox{\boldmath ${#1}$}}
+\newcommand{\rmsub}[2]{#1_{\rm #2}}
+\newcommand{\dex}[1]{\hbox{$\times\hbox{10}^{#1}$}}
+\newcommand{\rsun}{\,\mbox{$\rm R_{\odot}$}}
+\newcommand{\rjup}{\,\mbox{$\rm R_J$}}
+\newcommand{\msun}{\,\mbox{$\rm M_{\odot}$}}
+\newcommand{\mearth}{\,\mbox{$\rm M_{\oplus}$}}
+\newcommand{\mjup}{\,\mbox{$\rm M_J$}}
+\newcommand{\lsun}{\,\mbox{$\rm L_{\odot}$}}
+\newcommand{\ion}[2]{#1{\sc{\romannumeral #2}}}
+\newcommand{\chem}[2]{\hbox{$^{#2}$}#1}
+\newcommand{\kms}{\hbox{kms$^{-1}$}}
+\newcommand{\ms}{\hbox{ms$^{-1}$}}
+\newcommand{\cms}{\hbox{cms$^{-1}$}}
+\newcommand{\vsini}{\hbox{$v$\,sin\,$i$}}
+\newcommand{\vs}{\hbox{$v$\,sin\,$i$}}
+\newcommand{\rsini}{\hbox{$R$\,sin\,$i$}}
+\newcommand{\vrad}{\hbox{$v_{rad}$}}
+\newcommand{\degs}{$\degr$}
+\newcommand{\chisq}{$\chi^{2}$} 
+\newcommand{\radsec}{rad s$^{-1}$}
+\newcommand{\radday}{\hbox{rad.day$^{-1}$}}
+\newcommand{\invday}{\hbox{day$^{-1}$}}
+\newcommand{\ha}{H$\alpha$}
+\newcommand{\hb}{H$_{\beta}$}
+\newcommand{\hg}{H$_{\gamma}$}
+\newcommand{\hd}{\hbox{HD 189733}}
+\newcommand{\hdb}{\hbox{HD 189733b}}
+\newcommand{\dom}{\hbox{$\Delta\Omega$}}
+\newcommand{\tps}{\hbox{$T_{p}/T_{s}$}}
+
+\newcommand{\eev}{{\sc eev}}
+\newcommand{\mitll}{{\sc mitll}}
+\newcommand{\harps}{{\sc harps}}
+\newcommand{\asas}{{\sc asas}}
+\newcommand{\uves}{{\sc uves}}
+\newcommand{\vlt}{{\sc vlt}}
+\newcommand{\hst}{{\sc hst}}
+
+\newcommand{\scipy}{{\sc scipy}}
+\newcommand{\astroml}{{\sc astroml}}
+\newcommand{\gatspy}{{\sc gatspy}}
+\newcommand{\matplot}{{\sc matplotlib}}
+
+% So we can change our minds what to call them
+
+\newcommand{\horn}{sub-peak}
+
+\newcommand\Notnow[1]{}
+
+% Stuff different between paper and thesis, this is for paper
+% ===========================================================
+
+\newcommand\IfPaper[1]{#1}
+\newcommand\IfThesis[1]{}
+\newcommand\PaperThesis[2]{#1}
+\newcommand\paperorthesis{freport}
+\newcommand\FirstP{We}
+\newcommand\Firstp{we}
+\newcommand\Firstobj{us}
+\newcommand\Firstposs{our}
+\newcommand\FirstPoss{Our}
+
+\newdateformat{engwithth}{\ordinal{DAY}~\monthname[\THEMONTH] \THEYEAR}
+\newdateformat{engdate}{\THEDAY~\monthname[\THEMONTH] \THEYEAR}
+\newdateformat{monthonly}{\monthname[\THEMONTH] \THEYEAR}
+
+\begin{document}
+
+\input{titlestuff.tex}
+\input{introduction.tex}
+\input{obsdata.tex}
+\input{analysis.tex}
+%\input{results.tex}
+\input{conclusions.tex}
+
+\bibliographystyle{apj}
+\bibpunct{(}{)}{;}{s}{,}{,}
+\bibliography{bibrefs}
+
+\protect\label{lastpage}
+\end{document}

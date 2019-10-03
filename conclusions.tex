@@ -1,0 +1,61 @@
+\section{Analysis and conclusions}
+\protect\label{section:analysis}
+
+From the above, it is possible to draw the following conclusions and concerns:
+
+\subsection{Accuracy}
+The accuracy of the ADU counts in many places is of concern; the sky and/or bias
+counts are around 300 in all places and the maximum count in the target pixels
+can be as low as 3,800 and in some cases, as with the less bright objects which
+might be used for reference the ADU count can be of the order of 400.
+
+Very few of the images for \texttt{i} and \texttt{z} filters have anything
+detectable at all in apart from the target.
+
+It would be good to increase the exposure times, which should improve the
+accuracy in all cases, but unfortunately some of the \texttt{i} filter pixels in
+some of the images are close to saturation, as shown in Table
+\ref{table:pmaxima}.
+
+\subsection{Master flat files}
+It is hard to feel confident in the accuracy of the master flat files given that
+the daily flat files which go up to make them very so widely (see Table
+\ref{table:flatdist}). Also, there is the suspicion that some of these files are
+saturated or nearly so.
+
+The master flat files are not normalised as advertised. \textbf{This
+invalidates most of the already prepared results, which I'll have to redo.}
+
+\subsection{Analysis improvements}
+\protect\label{section:analimprove}
+
+Owing to the failure to find reference objects in many cases, such as all the infrared bands and two out of the four
+visible light bands, it would seem desirable to improve the analysis of images especially where only the target is
+visible. The following seem to be areas for improvement of the analysis.
+
+\begin{enumerate}
+  \item The daily observations need to be appropriately binned and corrected for
+  air mass.
+  \item An attempt to merge results for all filters on a given day.
+  \item Better treatment of the background sky level. Possible avenues for improvement are suggested by using the
+      techniques in \citet{dubovsky17}.
+  \item Being less conservative in acceptance of reference objects.
+  \item Interpolation of the ADU counts of reference objects outside the image
+  frame.
+  \item Aperture sizes for reference objects needs to be fine-tuned.
+\end{enumerate}
+
+\subsection{REM system suggestions}
+\protect\label{section:remimprove}
+
+Perhaps it would be possible to increase the exposure time for the \texttt{g}
+and \texttt{r} filters from 5 to 20 seconds. It would be possible to double the
+exposure time for the \texttt{z} filter. These changes would improve the SNR for
+measurements based on these. It would not be possible to increase the exposure
+time for the \texttt{i} filter as some of the images have pixel values
+approaching saturation already.
+
+Perhaps wonder if it is sensible to take the bias values at 11am in the morning
+when the observations are all taken around 3am and possibly the CCD is at a different
+temperature.
+
