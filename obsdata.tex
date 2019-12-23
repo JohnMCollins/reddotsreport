@@ -38,7 +38,7 @@ right excludes these.
 \caption{This shows the total number of observations taken as of \date{\today},
 both for visible light filters \textbf{g},
 \textbf{i}, \textbf{r} and \textbf{z} and also for infrared filters \textbf{H}, \textbf{J} and
-\textbf{K}. In fact infraread observations ceased at the beginning of June 2019.}
+\textbf{K}. In fact infrared observations ceased at the beginning of June 2019.}
 \protect\label{table:tobbsnums}
 \end{table}
 
@@ -65,7 +65,7 @@ panel is the same, also of \date{\today} for just the visible list filters.}.
 \protect\label{table:obstargets} \protect\label{table:filtersnums}
 \end{table}
 
-The diestribution of observations for the 3 main targets by date are shown in
+The distribution of observations for the 3 main targets by date are shown in
 Fig. \ref{fig:targobsplot}.
 
 \begin{figure}[!htbp]
@@ -80,7 +80,7 @@ of \date{\today}.}
 \protect\label{section:database}
 
 To aid in the analysis of the data, a database was created using MySQL to
-record and provide for fast retrieval of the objservational data, flat file
+record and provide for fast retrieval of the observational data, flat file
 images and results, together with software tools and library routines in Python
 and Perl.
 
@@ -101,4 +101,51 @@ latter targets were all observed with a gain of 1, only the daily flat and bias
 files with a gain of 1 were considered. The master bias files are
 constructed from the daily bias files with a gain of 1.
 
-\clearpage
+\subsection{Attempts to display files}
+
+All the standard display tools and routines struggled to show images with any
+degree of contrast. By far the best are the images for \texttt{g} filter,
+followed by those for the \texttt{r} filter. The images from the \texttt{i} and
+\texttt{z} filters rarely showed any objects other than the target.
+
+In Fig. 1ref{fig:badimage} is shown a typical image with points displayed as
+black only if they reach the 99.5 percentile or above. In Fig.
+\ref{fig:goodimage} is displayed one of the ``best'' images.
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[scale=0.5]{images/baddisp.png} \\
+\end{center}   
+\caption{This figure shows a typical image from one of the {\bstar}
+observations. Divisions of the grey scale are at the 70th, 90th, 99th, 99.5th
+and 99.8th percentiles. The scale shows the pixel values where these fall.
+100 pixels have been trimmed from each edge of the image as these are distorted
+after the flat field is applied.
+Objects are marked with A, B, C and D to show
+the 4 brightest objects found in descending order of brightness. No attempt is made here to identify the objects or optimise the
+aperture beyond a circular radius of 6 pixels, however the brightest object (marked 'A') is \bstar.
+The objects found are larger than suggested here as the edges fall outside the range shown.
+The vertical line 2/3 of the way across and 3/4 of the way down appears to be
+an artefact of column 623 of the CCDs. for the \texttt{g} filter.}
+\protect\label{fig:badimage}
+\end{figure}
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[scale=0.5]{images/gooddisp.png} \\
+\end{center}   
+\caption{This figure shows a typical image from one of the ``best"" {\bstar}
+observations. Divisions of the grey scale are at the 70th, 90th, 99th, 99.5th
+and 99.8th percentiles. The scale shows the pixel values where these fall.
+100 pixels have been trimmed from each edge of the image as these are distorted
+after the flat field is applied.
+Objects are marked with A, B, C and D to show the 4 brightest objects found in descending order of
+brightness. No attempt is made here to identify the objects or refine the
+aperture beyond a circular radius of 6 pixels, however the brightest object
+(marked 'A') is \bstar.
+The objects found are larger than suggested here as the edges fall
+outside the range shown.
+The vertical line 2/3 of the way across and 3/4 of the way down appears to be
+an artefact of column 623 of the CCDs. for the \texttt{g} filter.}
+\protect\label{fig:goodimage}
+\end{figure}
