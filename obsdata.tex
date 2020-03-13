@@ -3,30 +3,38 @@
 
 \subsection{Data Available}
 
-The following data is available from the Red Dots project size:
+The following data is available from the Red Dots project site:
 
 \begin{itemize}
   \item Images taken with visible light filters \textbf{g},
 \textbf{i}, \textbf{r} and \textbf{z} taken almost daily.
-\item Flat file images taken each day..
-\item Bias file images taken each day.
-\item Monthly master flat file images for each month.
-\item Monthly master bias file images for each month.
+\item Flat file images taken almost every day, usually as 3 images from the sky,
+taken as the light fades.
+\item Bias file images taken each day (approximately 8 hours after the
+observations).)
+\item Monthly master flat file images for each month constructed from some of
+the daily flat files.
+\item Monthly master bias file images for each month, constructed from some of
+the daily bias files.
 \item REMIR infrared images taken almost every day up to June 2019.
 \end{itemize}
 
 The flat and bias images are only available for the visible light filters \textbf{g},
 \textbf{i}, \textbf{r} and \textbf{z}.
+Images, flat and bias files for the visible light filters are all taken at
+exactly the same time for each of the four filters.
 
 The REMIR infrared images, from the three filters \textbf{H}, \textbf{J} and
 \textbf{K}. are divided approximately equally between 7 dither patterns. They
-are only 512x512 pixels in size and as no flat or bias files are provided
-were not considered in this report.
+are only 512x512 pixels in size and no flat or bias files are provided. They are
+not considered in this report. In any case they were discontinued at the start
+of June 2019.
 
 The total number of all observations as of \date{\today} is given in Table
 \ref{table:tobbsnums} and the number of observations of each target is given in
 Table \ref{table:tobbsnums}, the left panel includes the infrared images and the
-right excludes these.
+right excludes these. The distribution of observations for the 3 main targets by date are shown in
+Fig. \ref{fig:targobsplot}.
 
 \begin{table}[!htbp]
 \centering
@@ -38,8 +46,8 @@ right excludes these.
 \caption{This shows the total number of observations taken as of \date{\today},
 both for visible light filters \textbf{g},
 \textbf{i}, \textbf{r} and \textbf{z} and also for infrared filters \textbf{H}, \textbf{J} and
-\textbf{K}. In fact infrared observations ceased at the beginning of June 2019.}
-\protect\label{table:tobbsnums}
+\textbf{K}. Note that infrared observations ceased at the beginning of June
+2019.} \protect\label{table:tobbsnums}
 \end{table}
 
 \begin{table}[!htbp]
@@ -61,12 +69,10 @@ Filter & Number & \%age\\\hline
 \end{minipage}
 \caption{Left panel is a list of observation targets and totals of all
 observations taken as of \date{\today} including the infrared filters. The right
-panel is the same, also of \date{\today} for just the visible list filters.}.
+panel is the same, also of \date{\today}, for just the visible list filters.}.
 \protect\label{table:obstargets} \protect\label{table:filtersnums}
 \end{table}
 
-The distribution of observations for the 3 main targets by date are shown in
-Fig. \ref{fig:targobsplot}.
 
 \begin{figure}[!htbp]
 \begin{center}
@@ -90,62 +96,61 @@ The images were processed according to the formula:
 $ \frac{(mage - bias) \times mf}{flat - bias}$
 \end{center}
 
-In this $mf$ represents to mean value of the flat pixels. The mean value of the
-master flat files is alleged to be 1 (in fact it is not after trimming off rows
-and columns of the image containing zero or NaN values). The master flat files
-already have the bias subtracted.
+In this $mf$ represents to mean value of the flat pixels. The master flat files
+provided already have the bias subtracted.
 
 Half of the daily flat and bias files were made with a gain of 4.4, in line with
 observations taken of targets other than the 3 main {\rdwarf} targets. As these
 latter targets were all observed with a gain of 1, only the daily flat and bias
 files with a gain of 1 were considered. The master bias files are
-constructed from the daily bias files with a gain of 1.
+constructed from the daily bias files with a gain of 1. Accordingly attention is
+restricted to images with a gain of 1.
 
 \subsection{Attempts to display files}
 
 All the standard display tools and routines struggled to show images with any
-degree of contrast. By far the best are the images for \texttt{g} filter,
-followed by those for the \texttt{r} filter. The images from the \texttt{i} and
-\texttt{z} filters rarely showed any objects other than the target.
+degree of contrast. Finding objects in images proved difficult also. The
+best results were found from the images for \texttt{g} filter, followed by
+those for the \texttt{r} filter. The images from the \texttt{i} and \texttt{z}
+filters proved particularly hard to both display and hard to automatically find
+objects within the images and not be confused by ``hotspots'' on the CCD.
 
-In Fig. 1ref{fig:badimage} is shown a typical image with points displayed as
-black only if they reach the 99.5 percentile or above. In Fig.
-\ref{fig:goodimage} is displayed one of the ``best'' images.
-
-\begin{figure}[!htbp]
-\begin{center}
-\includegraphics[scale=0.5]{images/baddisp.png} \\
-\end{center}   
-\caption{This figure shows a typical image from one of the {\bstar}
-observations. Divisions of the grey scale are at the 70th, 90th, 99th, 99.5th
-and 99.8th percentiles. The scale shows the pixel values where these fall.
-100 pixels have been trimmed from each edge of the image as these are distorted
-after the flat field is applied.
-Objects are marked with A, B, C and D to show
-the 4 brightest objects found in descending order of brightness. No attempt is made here to identify the objects or optimise the
-aperture beyond a circular radius of 6 pixels, however the brightest object (marked 'A') is \bstar.
-The objects found are larger than suggested here as the edges fall outside the range shown.
-The vertical line 2/3 of the way across and 3/4 of the way down appears to be
-an artefact of column 623 of the CCDs. for the \texttt{g} filter.}
-\protect\label{fig:badimage}
-\end{figure}
+In figure \ref{fig:exampmontage} is shown a sample from a fruitful viewing
+night, 17th October 2019, showing images taken at the same time for each the
+visible light filters, It is noticeable how with the \texttt{g} filter 10 objects
+were found, with the \texttt{r} filter 3 objects were found, with the \texttt{i}
+filter 2 objects and with the \texttt{z} filter, 1 object was found. (These
+totals include the target, in this instance \bstar, in each case).
 
 \begin{figure}[!htbp]
 \begin{center}
-\includegraphics[scale=0.5]{images/gooddisp.png} \\
+\includegraphics[scale=0.125]{images/exampmontage.png} \\
 \end{center}   
-\caption{This figure shows a typical image from one of the ``best"" {\bstar}
-observations. Divisions of the grey scale are at the 70th, 90th, 99th, 99.5th
-and 99.8th percentiles. The scale shows the pixel values where these fall.
-100 pixels have been trimmed from each edge of the image as these are distorted
-after the flat field is applied.
-Objects are marked with A, B, C and D to show the 4 brightest objects found in descending order of
-brightness. No attempt is made here to identify the objects or refine the
-aperture beyond a circular radius of 6 pixels, however the brightest object
-(marked 'A') is \bstar.
-The objects found are larger than suggested here as the edges fall
-outside the range shown.
-The vertical line 2/3 of the way across and 3/4 of the way down appears to be
-an artefact of column 623 of the CCDs. for the \texttt{g} filter.}
-\protect\label{fig:goodimage}
+\caption{In this figure is shown the same patch of sky as seen by each of the
+four visible light filters at exactly the same time on 17th October 2019, with
+\texttt{g} at the top left, \texttt{i} at the top right, \texttt{r} at the bottom left and \texttt{z} at the bottom right.
+The master flat and bias for October 2019 for the appropriate filters was used.
+Objects are marked with A, B, C etc to show
+the objects found in descending order of ADU count. No attempt is
+made here to identify the objects or optimise the aperture beyond a circular radius of 6 pixels,
+however the brightest object (marked 'A') is \bstar.
+The vertical line 2/3 of the way across and 3/4 of the way down the image for
+the  \texttt{g} appears to be an artefact of column 623 of the CCDs.} 
+\protect\label{fig:exampmontage}
 \end{figure}
+
+It is noteworthy that the same area of sky is rarely selected on consecutive
+nights as is illustrated in Fig. \ref{fig:yearapart}.
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[scale=0.25]{images/yearapart.png} \\
+\end{center}   
+\caption{In this figure is illustrated two observations with the \texttt{g}
+filter of \bstar, taken almost exactly a year apart showing that few
+stars, and none sufficiently bright, are found in common between the two other
+than the target.}
+\protect\label{fig:yearapart}
+\end{figure}
+
+\clearpage

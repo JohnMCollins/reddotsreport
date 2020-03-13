@@ -5,17 +5,27 @@
 
 This report is an analysis of the observational data from the REM (Rapid Eye
 Mount) camera in La Silla, Chile, operated by the Red Dots Project, This work
-commencing in March 2015. \footnote{See \texttt{https://reddots.space/}}. In
-this project a series of observations are made of a patch of sky in the vicinity of particular target using four visual
-light filters on the ROS2 telescope and 3 infrared filters on the REMIR
-telescope. The images from the visbile light telescope are 1024 by 1-24 pixels, although
-the effective area is only 900 by 900 and the images from the infrared are 512
-by 512 pixels. In each case a 16-bit CCD records the counts for exach pixel.
-Flat field and bias frames are only available for the visible light cases.
+commenced in March 2015. \footnote{See \texttt{https://reddots.space/}}. In
+this project a series of observations are made of a patch of sky regularly
+(nearly nightly) in the vicinity of particular target or targets with a REM
+telescope. The telescope has using four visual light filters on the ROS2
+telescope and 3 infrared filters on the REMIR telescope. The ROS2 telescope has
+a 2048 by 2048 16-bit CCD, a quarter of which is allocated to each of 4 visible
+light filters. The images from the visible light telescope are nominally 1024 by
+1924 pixels, although the effective area is only in the region of 900 by 900
+pixels (varying for each filter). The images from the infrared are 512 by
+512 pixels. All the visible light images are taken at exactly the same time.
+
+Bias frames are taken daily for the visible light filters, usually 5 at
+approximately 11:30 am and flat field frames nearly as often, usually 3 at a
+time as the sky fades. A monthly master flat and bias file for each visible
+light filter is also constructed from the daily flat and bias frames.
+
+The REMIR observations were discontinued at the beginning of June 2019.
 
 The primary targets are \rdwarf s, although observations are made of other types
-of star during the course of each night.In this report, only the {\rdwarf} observations are considered and only the
-visible light cases.
+of star during the course of each night.In this report, only the {\rdwarf}
+observations are considered and only the visible light cases.
 
 \subsection{Targets}
 
@@ -39,15 +49,15 @@ support from spectroscopic analysis of an {\ha} peak.
 
 In 2016 a planet of 1.3 Earth mass was reported in the habitable
 zone of \prox, known as {\prox} b. \citep{angladaescude16}. Its orbital period was calculated as just over 11
-days. The following year further studies have suggested dust belts \citep{anglada17} but yet furhter
+days. The following year further studies have suggested dust belts \citep{anglada17} but yet further
 studies have suggested that a large flare affected those results \citep{macgregor18}.
 
-THe frequent flare activity is unusual in a star of slow rotation like \prox,
+The frequent flare activity is unusual in a star of slow rotation like \prox,
 previous studies such as In \citet{mohanty03} setting out the correlation
-between the projected otational velocity {\vsini} and the
+between the projected rotational velocity {\vsini} and the
 activity in mid-M to L-dwarfs, In \citet{vida19} the flaring activity was
 calculated as 1.49 events per day. with ``superflares'' approximately 3 times a
-year and flares a magntude larger every other year.
+year and flares a magnitude larger every other year.
 
 Such frequent flaring, as well as compromising the habitability of {\prox} b,
 is clearly likely to interfere with measurements of periodicity. It is highly
@@ -65,7 +75,7 @@ by the Red Dots project are of \prox.
 It is particularly notable for its very large proper motion of −802.803 mas/yr in Right Ascension and 10,362.542 mas/yr in Declination., the largest of all
 stars relative to the solar system. This is combined with a high radial velocity of $-110.6$ km/s \citep{bobylev17}.
 The high radial velocity of {\bstar} will bring it close enough
-to the solar system to rival or perhaps surpass {\prox} in approximatelyr 10,000 years as estimated by \citet{bobylev10}.
+to the solar system to rival or perhaps surpass {\prox} in approximately 10,000 years as estimated by \citet{bobylev10}.
 Its rotation period has been progressively given as 130 days in
 \citet{benedict98}, 148.6 days in \citet{suarezmascareno15} and 145 $\pm$ 15 days in \citet{toledopadron18}. Activity is low, as noted in the latter.
 It has an estimated age of between 7 to 10 Gyr \citep{ribas18}.
@@ -75,22 +85,17 @@ It has an estimated age of between 7 to 10 Gyr \citep{ribas18}.
 
 {\bstar} is of particular interest at the moment, following the announcement of
 a planet companion, also noted in \citet{ribas18}, and this report has focused
-upon it, espacially as the low activity reduces interference from that source
+upon it, especially as the low activity reduces interference from that source
 with periodicity calculations.
-Of the observations listed in Table \ref{table:filtersnums}, the corresponding observations for {\bstar} are listed in Table \ref{table:bstarsumm}. Observations were taken between August 2017 and
-\date{\today}. Due to the high proper motion, care has to be taken to correctly take this into account when identifying it in images.
+Of the observations listed in Table \ref{table:filtersnums}, the corresponding observations for {\bstar} are listed in Table \ref{table:bstarsumm}.
+Observations were taken between August 2017 and \date{\today}. Due to the high proper motion, care has to be taken to correctly take this into account
+when identifying it in images.
 
 \begin{table}[!htbp]
 \begin{center}
 \begin{tabular}{lr} \hline
 Filter & Number \\\hline
-g & 1,415 \\
-i & 1,414 \\
-r & 1,414 \\
-z & 1,415 \\
-H & 2,264 \\
-J & 5,557 \\
-K & 2,130 \\
+\input{tables/totbs.tex}
 \hline
 \end{tabular}
 \end{center}
@@ -110,13 +115,11 @@ The strong activity is noted in \citet{wargelin08}. Previously, in
 
 Nowhere reports a rotation period, however a maximum figure for the rotation
 period of $3.5 \pm 1.5$ days can be calculated from the rotational
-velocity (\vsini) of $5 \pm 1.5$ km/s fiven in \citet{wargelin08} and the radius of 0.24 solar given in
+velocity (\vsini) of $5 \pm 1.5$ km/s given in \citet{wargelin08} and the radius of 0.24 solar given in
 \citet{johnson83}. If the inclination is other than 90\degree the rotation
 period will be shorter by a factor of the sine of the inclination angle.
 It would be useful to obtain a figure for the rotation period as no planets have
 been reported for Ross 154 and a low inclination angle might be one of the
 reasons.
 
-\citet{wargelin08} also state that the fast rotation period is indicative of a
-n age of less than 1 Gyr.
-
+\citet{wargelin08} also state that the fast rotation period is indicative of an age of less than 1 Gyr.

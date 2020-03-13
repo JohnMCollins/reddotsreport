@@ -1,272 +1,19 @@
 \section{Analysis}
 \protect\label{section:tanalysis}
 
-The various files saved by the visbile light ROS2 instruments were considered in
-turn with the results as described below.
+The performance in terms of finding objects, especially with the filters other
+than \texttt{g} and \texttt{r} was not good. The various files in use were
+considered in turn in an effort to improve the performance.
 
-\subsection{Flat files}
-\protect\label{section:flatfiles}
-
-Two kinds of flat file are provided, a set of daily flat files for each of the
-filters, typically 2 or 3 each day for each of the 4 visible light filters \textbf{g},
-\textbf{i}, \textbf{r} and \textbf{z} and for gains of 1 and 4 and the monthly
-master flat files, considting of a composite of the daily flat files for the
-month.
-
-\subsubsection{Daily flat files}
-\protect\label{section:dailyflatfiles}
-
-The daily flat files, after the end of 2013, which precedes the first of the
-observations, are taken with an exposure time of 1 second. Some have a gain of
-4.4, in line with the gain applied to some of the other observations, but in
-this report only the flat files with a gain of 1 are considered. The master flat
-files are only taken from these.
-
-Rows and columns of the image containing zero pixels were removed from the
-images before analysis. (These values are replaced by \texttt{NaN} in cle master
-flat files and correspond to invalud pixels.)
-
-It was of concern that many of the daily flat files had pixels which were vary
-close to saturation. in some cases they were clearly saturated, but none of the
-master flat files appeared to incorporate the daily flat files with definitely
-saturated pixels. In Table \ref{table:satpix} is shown the proportion of
-nearly saturated pixels in flat files for each filter.
-
-\begin{table}[!htbp]
-\begin{center}
-\begin{tabular}{lrrr} \hline
-Filter & Flat files & Saturated & Over 50\%\\\hline
-g & 3,679 & 29.49 & 22.34 \\
-i & 3,679 & 32.37 & 27.43 \\
-r & 3,680 & 32.66 & 28.12 \\
-z & 3,680 & 0.92 & 0.60 \\\hline
-Overall & 14,718 & 23.86 & 19.62\\
-\hline
-\end{tabular}
-\end{center}
-\caption{Breakdown of daily flat files by filter up to August 2019 showing
-number, percentage with nearly saturated pixels present and percentage with over
-50\% saturated pixels (in many cases this was over 90\% and occasionally 100\%).}
-\protect\label{table:satpix}
-\end{table}
-
-It was also remarkable how wide the distribution of values varied between the
-individual flat files, even within the course of a few minutes. By way of
-illustration, in Table \ref{table:flatdist} is shown the individual flat files
-going to make up the master flat file for the \textbf{g} filter for August 2019.
-
-Study of the program used to create the programs shows that files with a mean of
-less than 5,000 or greater than 50,000 are excluded. These are shown in
-brackets.
-
-%\begin{table}[!htbp]
-%\begin{center}
-\LTcapwidth=\linewidth
-\begin{longtable}{llrrrrr} 
-\hline
-Date & Time & Min pixel & Max pixel & Mean & Std & Sat \%age \\ \hline
-\endfirsthead
-\hline
-\textit{(Continued\ldots)}\\
-Date & Time & Min pixel & Max pixel & Mean & Std & Sat \%age \\ \hline
-\endhead
-(01/08/2019 & 22:21:23 & 35552 & 64157 & 63884.38 & 948.02 & 99.36) \\
-(01/08/2019 & 22:24:25 & 19366 & 63882 & 59746.41 & 6583.13 & 68.73) \\
-01/08/2019 & 22:27:28 & 9877 & 35432 & 30770.44 & 3811.38 &  \\
-(02/08/2019 & 22:21:54 & 36649 & 64340 & 63921.21 & 834.57 & 99.48) \\
-(02/08/2019 & 22:24:56 & 19858 & 63890 & 60641.03 & 5993.17 & 74.45) \\
-02/08/2019 & 22:27:58 & 10143 & 37032 & 32192.79 & 4012.70 &  \\
-(03/08/2019 & 22:22:38 & 34207 & 64118 & 63844.40 & 1113.48 & 99.04) \\
-(03/08/2019 & 22:25:40 & 18524 & 63851 & 58393.50 & 6909.36 & 60.37) \\
-03/08/2019 & 22:28:42 & 9370 & 33989 & 29684.48 & 3549.90 &  \\
-(04/08/2019 & 22:22:57 & 36984 & 64171 & 63929.72 & 734.61 & 99.53) \\
-(04/08/2019 & 22:26:00 & 19919 & 63882 & 60908.72 & 5856.96 & 76.34) \\
-04/08/2019 & 22:29:02 & 10187 & 36911 & 32302.63 & 3877.29 &  \\
-(05/08/2019 & 22:23:44 & 36204 & 64164 & 63901.36 & 878.06 & 99.36) \\
-(05/08/2019 & 22:26:46 & 19656 & 63894 & 60119.95 & 6426.38 & 71.42) \\
-05/08/2019 & 22:29:48 & 9902 & 35460 & 30932.49 & 3715.08 &  \\
-(08/08/2019 & 22:25:18 & 36188 & 64096 & 63836.57 & 1001.21 & 99.07) \\
-(08/08/2019 & 22:28:21 & 19403 & 63812 & 56942.32 & 6571.37 & 41.30) \\
-08/08/2019 & 22:31:23 & 9871 & 32821 & 28512.53 & 3249.43 &  \\
-(09/08/2019 & 22:25:43 & 34694 & 64117 & 63842.25 & 1100.53 & 99.13) \\
-(09/08/2019 & 22:28:45 & 18427 & 63860 & 58176.36 & 7037.97 & 57.98) \\
-09/08/2019 & 22:31:48 & 9350 & 35457 & 29397.64 & 3675.17 &  \\
-(10/08/2019 & 22:26:23 & 33911 & 64138 & 63835.78 & 1184.06 & 99.09) \\
-(10/08/2019 & 22:29:25 & 17901 & 63867 & 57085.41 & 7178.32 & 46.60) \\
-10/08/2019 & 22:32:28 & 9012 & 33460 & 28489.34 & 3604.29 &  \\
-(11/08/2019 & 22:26:47 & 36224 & 64143 & 63871.29 & 952.63 & 99.23) \\
-(1/08/2019 & 22:29:50 & 19503 & 63848 & 59214.37 & 6756.41 & 65.57) \\
-11/08/2019 & 22:32:52 & 9900 & 34306 & 29958.69 & 3587.71 &  \\
-(12/08/2019 & 22:27:29 & 34874 & 64099 & 63827.69 & 1061.82 & 99.13) \\
-(12/08/2019 & 22:30:31 & 18299 & 63821 & 57498.56 & 6963.27 & 52.35) \\
-12/08/2019 & 22:33:33 & 8841 & 34127 & 27932.21 & 3402.57 &  \\
-(13/08/2019 & 22:27:53 & 26855 & 63996 & 63480.00 & 2359.47 & 97.52) \\
-13/08/2019 & 22:30:55 & 14556 & 55684 & 48385.03 & 6093.06 &  \\
-13/08/2019 & 22:33:57 & 7327 & 27590 & 23813.48 & 3003.35 &  \\
-(14/08/2019 & 22:28:22 & 29545 & 64048 & 63641.30 & 1844.97 & 98.13) \\
-(14/08/2019 & 22:31:24 & 297 & 1072 & 330.48 & 8.84) &  \\
-15/08/2019 & 22:37:49 & 3995 & 14132 & 12165.89 & 1478.25 &  \\
-15/08/2019 & 22:40:51 & 1994 & 7410 & 5607.23 & 664.14 &  \\
-(15/08/2019 & 22:43:53 & 984 & 4058 & 2571.62 & 283.40) &  \\
-(16/08/2019 & 22:29:29 & 34794 & 64104 & 63811.21 & 1064.75 & 99.09) \\
-(16/08/2019 & 22:32:31 & 18508 & 63775 & 56343.10 & 6747.63 & 36.85) \\
-16/08/2019 & 22:35:34 & 9397 & 32119 & 27744.75 & 3289.80 &  \\
-(17/08/2019 & 22:30:00 & 32358 & 64049 & 63707.29 & 1485.08 & 98.49) \\
-17/08/2019 & 22:33:02 & 17092 & 59656 & 51840.76 & 6169.16 &  \\
-17/08/2019 & 22:36:04 & 8365 & 29487 & 25516.52 & 3005.22 &  \\
-(18/08/2019 & 22:30:37 & 32580 & 64064 & 63723.19 & 1445.39 & 98.51) \\
-(18/08/2019 & 22:33:40 & 17284 & 60743 & 52979.26 & 6446.68 & 0.04) \\
-18/08/2019 & 22:36:42 & 8626 & 30134 & 26121.78 & 3164.04 &  \\
-19/08/2019 & 22:38:33 & 6559 & 24750 & 20485.47 & 2511.74 &  \\
-19/08/2019 & 22:41:35 & 3310 & 11757 & 10151.13 & 1209.65 &  \\
-(19/08/2019 & 22:44:38 & 1747 & 5847 & 4919.00 & 567.59) &  \\
-(20/08/2019 & 22:31:37 & 33876 & 64097 & 63806.55 & 1185.07 & 98.92) \\
-(20/08/2019 & 22:34:45 & 17436 & 62961 & 54970.61 & 6719.56 & 21.53) \\
-20/08/2019 & 22:37:47 & 8782 & 31325 & 27158.01 & 3310.33 &  \\
-(21/08/2019 & 22:32:10 & 32060 & 64086 & 63780.26 & 1372.30 & 98.93) \\
-(21/08/2019 & 22:35:13 & 16899 & 63788 & 55993.52 & 7051.84 & 35.19) \\
-21/08/2019 & 22:38:15 & 8563 & 33864 & 27694.63 & 3472.51 &  \\
-(22/08/2019 & 22:32:41 & 31085 & 64068 & 63722.68 & 1581.72 & 98.59) \\
-(22/08/2019 & 22:35:43 & 16092 & 60863 & 52976.67 & 6582.73 & 0.07) \\
-22/08/2019 & 22:38:45 & 8217 & 30147 & 26224.55 & 3255.70 &  \\
-(23/08/2019 & 22:33:08 & 30257 & 64074 & 63692.27 & 1665.09 & 98.40) \\
-(23/08/2019 & 22:36:11 & 16153 & 57929 & 51317.25 & 5734.27) &  \\
-23/08/2019 & 22:39:13 & 7982 & 28633 & 25330.17 & 2795.16 &  \\
-(25/08/2019 & 22:35:14 & 25102 & 63927 & 63084.32 & 3218.74 & 95.25) \\
-25/08/2019 & 22:38:16 & 12793 & 45660 & 39846.58 & 4631.51 &  \\
-25/08/2019 & 22:41:19 & 6409 & 22277 & 19302.91 & 2213.69 &  \\
-(26/08/2019 & 22:34:44 & 30850 & 64025 & 63668.45 & 1602.02 & 98.33) \\
-(26/08/2019 & 22:37:47 & 16229 & 59128 & 50809.01 & 5844.82) &  \\
-26/08/2019 & 22:40:59 & 7767 & 27455 & 23999.14 & 2719.35 &  \\
-(27/08/2019 & 22:35:17 & 32285 & 64063 & 63731.49 & 1413.44 & 98.61) \\
-(27/08/2019 & 22:38:20 & 25796 & 63876 & 62194.84 & 4423.37 & 87.95) \\
-27/08/2019 & 22:41:22 & 7977 & 29152 & 24866.16 & 3013.25 &  \\
-(28/08/2019 & 22:35:44 & 30923 & 64056 & 63670.95 & 1635.03 & 98.31) \\
-(28/08/2019 & 22:38:46 & 16162 & 59279 & 51656.22 & 6315.28) &  \\
-28/08/2019 & 22:41:49 & 8010 & 29832 & 25342.78 & 3086.90 &  \\
-\pagebreak[4]
-29/08/2019 & 22:54:11 & 551 & 2490 & 1332.29 & 138.91 &  \\
-(29/08/2019 & 22:57:13 & 389 & 1423 & 768.52 & 65.26) &  \\
-(29/08/2019 & 23:00:16 & 327 & 3888 & 526.43 & 33.97) &  \\
-(30/08/2019 & 22:36:47 & 28361 & 64029 & 63598.68 & 1988.34 & 98.05) \\
-30/08/2019 & 22:39:49 & 15144 & 56837 & 49233.68 & 6305.52 &  \\
-30/08/2019 & 22:42:52 & 7294 & 28110 & 24134.57 & 3107.35 &  \\
-31/08/2019 & 22:37:23 & 29207 & 64031 & 63578.67 & 2013.92 & 97.75 \\
-31/08/2019 & 22:40:25 & 14886 & 54393 & 46619.93 & 6091.38 &  \\
-31/08/2019 & 22:43:27 & 7409 & 27017 & 22926.64 & 2995.87 &  \\
-\hline
-% \end{center}
-\captionsetup{skip=20pt}
-\caption{
-This table shows the breakdown of the daily flat files going to
-make up the master flat file for the \textbf{g} filter for August
-2019. Columns show the date and time, the minimum and the maximum pixel values,
-the mean and standard deviation and where applicable the percentage of pixel
-values which were close to saturation. Items with mean outside the range 5,000
-to 50,000 are not included in the file and are shown in brackets.}
-\protect\label{table:flatdist}
-\end{longtable}
-% \end{table}
-
-\subsubsection{Master flat files}
-\protect\label{section:masterflatfiles}
-
-The master flat files consiste of mean values of the incorporated daily flat
-files, the header indicating which ones are used. The iamge is saved as a
-floating-point number. They are advertised to be normalised so that the mean
-value is 1, however it was noticed that the mean values were around 0.95. The
-programs used to consturct this use a normalisation to the median rather than
-the mean.
-
-Invalid pixel values are represented by \texttt{Nan} and rows and columns
-containing these values are trimaged from the images, both for the flat files
-themselves, and also for the corresponding bias and observations files.
-
-The formula given in Section \ref{section:tdataprovided} is invoked to process
-the observation files, applying the master bias and flat files.
-
-\subsubsection{Linearity of CCDs}
-
-It might be reasonable to expect that if the CCDs are linear, then the standard
-deviation of the values in the daily flat files would rise in proportion to the
-mean values in the daily flat files. In Fig. \ref{fig:ffcorr} is shown how this
-correlates for the four filters.
-
-\begin{figure}[!htbp]
-\begin{center}
-\includegraphics[scale=0.25]{images/Corr.png} \\
-\end{center}   
-\caption{This figure shows how the standard deviation of the values in the
-daily flat files corresponds to the four filters. In the top is shown the
-results for the \texttt{g} filter, the bottom left shows the \texttt{r} filter,
-the top right shows the results for the \texttt{i} filter and the bottow right
-shows the results for the \texttt{z} filter. The black line shows the best fit
-slope in each case.}
-\protect\label{fig:ffcorr}
-\end{figure}
-
-\subsubsection{Display of flat filesl}
-
-A profile of the master flat files was taken by ``slicing'' throuh rows and
-columns. In Fig. \ref{fig:mbyrow} are shown 4 rows and the column value in a master flat file (for September 2019) and the
-by columns in Fig. \ref{fig:mbycol}.
-
-\begin{figure}[!htbp]
-\begin{center}
-\includegraphics[scale=0.25]{images/Cmrowd.png} \\
-\end{center}   
-\caption{This figure shows the pixel values in the master flat files for the
-four filters for the month of September 2019, selecting rows 200, 400, 600 and
-800 in the file.
-In the top is shown the results for the \texttt{g} filter, the bottom left shows the \texttt{r} filter,
-the top right shows the results for the \texttt{i} filter and the bottow right
-shows the results for the \texttt{z} filter. }
-\protect\label{fig:mbyrow}
-\end{figure}
-
-\begin{figure}[!htbp]
-\begin{center}
-\includegraphics[scale=0.25]{images/Cmcold.png} \\
-\end{center}   
-\caption{This figure shows the pixel values in the master flat files for the
-four filters for the month of September 2019, selecting columns 200, 400, 600
-and 800 in the file.
-In the top is shown the results for the \texttt{g} filter, the bottom left shows the \texttt{r} filter,
-the top right shows the results for the \texttt{i} filter and the bottow right
-shows the results for the \texttt{z} filter. }
-\protect\label{fig:mbycol}
-\end{figure}
-\clearpage
-
-The daily flat files which were selected, i.e.mean values between 5,000 and
-50,000 counts, took a similar profile.
-
-\subsection{Bias files}
+\subsection{Bias Files}
 \protect\label{section:biasfiles}
 
-As with the flat files, daily and monthly master bias files are saved. However
-the master bias files are stored as integer pixels, presumably an average of the
-daily bias files. The master bias files, unlike the master flat files, do not
-include any indication of which daily bias files go into their construction.
-
-In the treatment of the bias files herein, the images are trimmed by removing
-rows and columns which contain \texttt{NaN} in the corresponding monthly master
-flat file.
-
-As discussed in Section \ref{section:tdataprovided} The images were processed according to the formula:
-
-\begin{center}
-$ \frac{(mage - bias) \times mf}{flat - bias}$
-\end{center}
-
-In this $mf$ represents to mean value of the flat pixels, which was supposed to
-be normalised to be 1 in the master flat files. In fact it is not. The master
-flat files are advertised to have the bias already subtracted.
-
-It was noticed that in some cases the calculation above gave negative results,
-i.e. the bias values in some pixels were greater than the corresponding ones in
-the images. For example, taking the observations and master bias files for 5
-September 2018, the total negative values shown in Table \ref{table:negmast} are
+It was noticeable that some of the pixel values, after subtraction of the master
+bias files, became negative, as can be seen in both Fig. \ref{fig:exampmontage}
+and \ref{fig:yearapart}. This occurs in a significant number of cases, but
+particularly with the \texttt{g} filter, for example example, taking the
+observations and master bias files for 5  September 2018, the total negative values shown in 
+Table \ref{table:negmast} are
 observed.
 
 \begin{table}[!htbp]
@@ -309,7 +56,7 @@ appropriate to examine these. on 5 September 2018, five daily bias files were
 taken between 11:31:10 UTC and 11:37:02 UTC for each filter.
 
 Each consecutive pair of bias files were compared against each other (after
-eliminating ``spikes'' from cosmic rays) and the results set out in Fig.
+eliminating ``spikes'') and the results set out in Fig.
 \ref{fig:biascomp}.
 
 \begin{figure}[!htbp]
@@ -347,20 +94,149 @@ shown in Fig. \ref{fig:biascomp} and was often zero as Fig.
 \ref{fig:negbiaseg} and Fig. \ref{fig:negbiasmerg} show. This would suggest that
 the bulk of the ``sky level'' is made up of the bias values.
 
+\subsubsection{Hotspots or defective pixels}
+\protect\label{section:hotspots}
+
+It was noticeable that apparent findings of objects in the images consistently
+showed a point source. This was particularly true of the images for the
+\texttt{g} filter. It was attempted to identify such hotspots by examining the
+number of bias file images in which a peak value of over 5 standard deviations appears in the same place in over 1\% of the files,
+it was found that there were 1,558 such pixels in all the
+\texttt{g} daily bias files, 2 in the \texttt{z} files and none in the others.
+793 were in column 623, where the vertical line appears in the images and can be
+seen in Fig. \ref{fig:yearapart}. No amount of adjustments to flat or bias files
+can be made to overcome this consistently. It will have to be worked around by
+interpolation over the areas in question.
+
+It is unfortunate that this applies to the \texttt{g} filter as the images are
+otherwise better than the others. Possibly this might give rise to ``false
+positives''.
+
+\subsubsection{Master bias files}
+\protect\label{section:masterbias}
+
+The master bias files are created by combining all the bias files for the
+relevant month, using the median pixel value in each case. This is reasonable
+in most cases except for the \texttt{g} filter case where there are so many
+hotspots. This probably explains the high number of negative pixels after
+applying the bias files noted in Table \ref{table:negmast}.
+
+
+\subsection{Flat files}
+\protect\label{section:flatfiles}
+
+Two kinds of flat file are provided, a set of daily flat files for each of the
+filters, typically 2 or 3 each day for each of the 4 visible light filters \textbf{g},
+\textbf{i}, \textbf{r} and \textbf{z} and for gains of 1 and 4 and the monthly
+master flat files, consisting of a composite of the daily flat files for the
+month.
+
+\subsubsection{Daily flat files}
+\protect\label{section:dailyflatfiles}
+
+The daily flat files, after the end of 2013, which precedes the first of the
+observations, are taken with an exposure time of 1 second. Some have a gain of
+4.4, in line with the gain applied to some of the other observations, but in
+this report only the flat files with a gain of 1 are considered. The master flat
+files are only taken from these.
+
+Rows and columns of the image containing zero pixels were removed from the
+images before analysis. (These values are replaced by \texttt{NaN} in cle master
+flat files and correspond to invalid pixels.)
+
+It was of concern that many of the daily flat files had pixels which were vary
+close to saturation. in some cases they were clearly saturated, but none of the
+master flat files appeared to incorporate the daily flat files with definitely
+saturated pixels. In Table \ref{table:satpix} is shown the proportion of
+nearly saturated pixels in flat files for each filter.
+
+\begin{table}[!htbp]
+\begin{center}
+\begin{tabular}{lrrr} \hline
+Filter & Flat files & Saturated & Over 50\%\\\hline
+g & 3,679 & 29.49 & 22.34 \\
+i & 3,679 & 32.37 & 27.43 \\
+r & 3,680 & 32.66 & 28.12 \\
+z & 3,680 & 0.92 & 0.60 \\\hline
+Overall & 14,718 & 23.86 & 19.62\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Breakdown of daily flat files by filter up to August 2019 showing
+number, percentage with nearly saturated pixels present and percentage with over
+50\% saturated pixels (in many cases this was over 90\% and occasionally 100\%).}
+\protect\label{table:satpix}
+\end{table}
+
+\subsubsection{Linearity of CCDs}
+
+It might be reasonable to expect that if the CCDs are linear, then the standard
+deviation of the values in the daily flat files would rise in proportion to the
+mean values in the daily flat files. In Fig. \ref{fig:ffcorr} is shown how this
+correlates for the four filters.
+
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[scale=0.25]{images/Corr.png} \\
+\end{center}   
+\caption{This figure shows how the standard deviation of the values in the
+daily flat files corresponds to the four filters. In the top is shown the
+results for the \texttt{g} filter, the bottom left shows the \texttt{r} filter,
+the top right shows the results for the \texttt{i} filter and the bottom right
+shows the results for the \texttt{z} filter. The black line shows the best fit
+slope in each case.}
+\protect\label{fig:ffcorr}
+\end{figure}
+
+It is clear \textit{and I need another diagram to illustrate this} that
+linearity drops off dramatically when the mean is below 5,000 and above 50,000.
+%\
+\subsubsection{Master flat files}
+\protect\label{section:masterflatfiles}
+
+The master flat files consist of median values of the incorporated daily flat
+files, the header indicating which ones are considered.
+
+Invalid pixel values are represented by \texttt{Nan} and rows and columns
+containing these values are trimmed from the images, both for the flat files
+themselves, and also for the corresponding bias and observations files.
+
+The program used to create the master flat files selects daily flat files with a
+mean value between 5,000 and 50,000 \textbf{and} with a negative skew and
+kurtosis less than 7.\footnote{In the author's opinion the ``and'' was not
+intended,}
+
+It would appear to the author that the upper limit is too great and several
+files with saturated pixels are included, using the median pixel value will
+exclude these, but this creates a difficulty in that as 3 daily flat files are
+taken from the sky before observations start, effectively the middle one is
+taken in each case by the median.
+
+In the author's opinion each flat file should
+be normalised first and the results combined, so a procedure to create
+alternative master flat files was devised. This turned out to be compromised by
+the extreme values in the bias files, which made some of the pixel values
+negative in the daily flat files. This primarily affected the \texttt{r} filter
+(not the \texttt{g} filter as might have been expected). To complete this task
+the hotspots need to be eliminated.
+
+It was noticed that there was a computational error in the calculation of the
+mean, standard deviation and other parameters in the master flat files and these
+had to be discarded in any event. As the daily flat files change somewhat over
+time \textit{I need to illustrate this}, reliance on a master flat file possibly
+30 days removed from the observations to which it relates would seem
+inappropriate and a procedure of ``rolling'' master flat files centred on the
+observation dated was adopted.
+
 \subsubsection{Accuracy}
 Combination of daily bias values appears to improve the accuracy. The median
-pixel value for all of the bias files for all of the filters is approxiamtely
+pixel value for all of the bias files for all of the filters is approximately
 300 with a standard deviation of about 7 for the individual files, 3 for where
 all the daily ones for a given day are merged and 1 for the master bias files.
 
 If the counts on the actual images are considered, the following maximum pixel
 values are observed, as illustrated in Table \ref{table:pmaxima}. Note that
 these are extreme cases. The typical maximum is about 75\% of these.
-
-The values displayed are in all cases for the target object, \bstar. Reference
-objects which are ``found'' have ADUs about 25\% of those figures, whist other
-objects only just discernible on the images but not ``found'' by the algorithm
-have maximum ADUs of about 450.
 
 \begin{table}[!htbp]
 \begin{center}

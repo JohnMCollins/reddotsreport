@@ -5,8 +5,9 @@ DOCNAME=report
 include $(HOME)/lib/latex.mk
 
 tabs:
+	listfilts.py --object BarnardStar --latex >tables/totbs.tex
 	listobjects.py --cut 5.2 --lat --dith -1 --noundef >tables/totalobs.tex
-	listobjects.py --cut 4.9 --lat --noundef >tables/totalvis.tex
+	listobjects.py --cut 4 --lat --noundef >tables/totalvis.tex
 	listfilts.py --lat >tables/totalfilt.tex
 
 pngimages:
