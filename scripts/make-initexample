@@ -1,0 +1,32 @@
+#1 /bin/bash
+
+constr_file=g.fits.gz
+objloc_file=g.objloc
+findres_file=g.findres
+mastflat=g.mastf0918.fits.gz
+mastbias=g.mastb0918.fits.gz
+
+trap "rm -f $constr_file $objloc_file $findres_file $mastflat $mastbias" 0 1 2 3 15
+
+cd ~/src/astro/reports/remfits/tmp
+
+set -e
+
+fetchforb.pl --type b --filter g --year=2018 --month=9 --out $mastbias
+fetchforb.pl --type f --filter g --year=2018 --month=9 --out $mastflat
+convert_image.py --op sub --out $constr_file `listobs.py --date 2018/9/17,02.58.52 --filter g --ido` $mastbias
+convert_image.py --single mean --op mult $constr_file $mastflat
+convert_image.py --op div $constr_file $mastflat
+get_locations.py $constr_file
+find_target.py $constr_file
+find_match_objects.py $constr_file
+set +e
+disp_object_overlap.py --autoh --compress $findres_file >/dev/null
+ecode=$?
+if [ $ecode -gt 1 ]
+then
+	echo 'Aborting due to errors'
+	exit 100
+fi
+image_display.py --limfind 10 --title '' --outfig ../images/initgexample.png $constr_file
+

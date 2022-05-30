@@ -1,0 +1,19 @@
+#1 /bin/bash
+
+trap 'rm -f ?.masteg[bf]????' 0 1 2 3 15
+
+cd ~/src/astro/reports/remfits/tmp
+
+for filter in g r i z
+do
+	fetchforb.pl --type b --filter $filter --year=2018 --month=9 --out $filter.mastegb0918.fits.gz
+	fetchforb.pl --type f --filter $filter --year=2018 --month=9 --out $filter.mastegf0918.fits.gz
+	fetchforb.pl --type b --filter $filter --year=2020 --month=1 --out $filter.mastegb0120.fits.gz
+	fetchforb.pl --type f --filter $filter --year=2020 --month=1 --out $filter.mastegf0120.fits.gz
+done
+
+image4_display.py --grey biasdisp  --outfig ../images/mastbiaseg0918.png ?.mastegb0918.fits.gz
+image4_display.py --grey biasdisp  --outfig ../images/mastbiaseg0120.png ?.mastegb0120.fits.gz
+image4_display.py --grey flatdisp  --outfig ../images/mastflateg0918.png ?.mastegf0918.fits.gz
+image4_display.py --grey flatdisp  --outfig ../images/mastflateg0120.png ?.mastegf0120.fits.gz
+

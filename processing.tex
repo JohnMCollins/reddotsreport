@@ -1,0 +1,52 @@
+\section{Processing of data}
+\protect\label{section:processing}
+
+In this section the processing of the data on a daily and ongoing basis is
+considered.
+
+\subsection{Daily processing}
+\protect\label{section:dailyproc}
+
+A daily routine was set up on the Cluster (and in parallel on my home machine)
+to do the following.
+
+\begin{enumerate}
+  \item Load rows of data corresponding to the observations taken for the
+  preceding night.
+  \item For the observations of interest, in terms of the targets and for the
+  visible light filters, load the corresponding FITS files. Also note parameters
+  such as moon phase and distance, exposure time etc.
+  \item Load rows of data corresponding to the daily bias and flat files.
+  \item Load corresponding FITS files where this is useful (i.e. excluding
+  those with a gain of other than 1)
+  \item \textit{Not done yet but about to add} note information about
+  reliability of each image, assigning a ``quality'' value between 0 and 1.
+  Currently this is ``binary'' only but some images, perhaps partly obscured by
+  clouds, can still be partly used with a suitable weighting. \textit{I have
+  already written the python interface to select images in a given range of
+  quality}.
+  \item \textit{Not done yet but about to add} do outline find of objects in
+  each usable image.
+\end{enumerate}
+
+\subsection{Brightness plot of images}
+\protect\label{section:recordadus}
+
+After taking each usable image and with the locations of available objects
+already found, it is possible to make a light curve for the object over time by
+reference to a common subset of reference objects.
+
+Unfortunately due to the differing orientations of the images, the subset of
+reference objects is Small the more images are taken. I have set up to be able
+to select images by orientation, using 4 different selections may be chosen, 0
+representing an orientation with increasing Declination along the Y axis and 1
+to 3 respectively selecting an anti-clockwise 90\degree turn from that. This
+increases the chances of being able to find a common set of reference objects.
+\textit{I need to illustrate this} as does limiting selections to the brightest
+overall images.
+
+As discussed in Section \ref{section:fwoptap}, the brightness and variability of
+reference objects needs to be established so each frame can be evaluated on the
+basis of the reference objects available.
+
+\clearpage

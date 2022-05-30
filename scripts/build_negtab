@@ -1,0 +1,92 @@
+#! /bin/bash
+
+set -e
+outfile=${1?'No out file'}
+trim=${2:-0}
+restr="$3"
+
+cd ~/src/astro/reports/remfits/tmp2
+
+build_negpixtab.py --force --create --countfile $outfile
+
+doit() {
+  local y=$1 m=$2 f=$3 om
+  om=`printf "%.2d" $m`
+  listobs.py $restr --gain 1 --filt $f --allmonth $y-$m|build_negpixtab.py --trim $trim --bias $f.b.$y.$om.fits.gz --descr "Filter $f $y $om" --count $outfile
+}
+
+for f in g r i z
+do
+	m=1
+	om=`printf "%.2d" $m`
+	while [ $m -lt 4 ]
+	do
+		doit 2020 $m $f &
+		((m+=1))
+	done
+	m=10
+	while [ $m -lt 12 ]
+	do
+		doit 2020 $m $f &
+		((m+=1))
+	done
+done
+
+wait
+
+for f in g r i z
+do
+	m=7
+	om=`printf "%.2d" $m`
+	while [ $m -lt 13 ]
+	do
+		doit 2017 $m $f &
+		((m+=1))
+	done
+done
+
+wait
+
+for f in g r i z
+do
+	m=1
+	om=`printf "%.2d" $m`
+	while [ $m -lt 13 ]
+	do
+		doit 2018 $m $f &
+		((m+=1))
+	done
+done
+
+wait
+
+for f in g r i z
+do
+	m=1
+	om=`printf "%.2d" $m`
+	while [ $m -lt 3 ]
+	do
+		doit 2019 $m $f &
+		((m+=1))
+	done
+done
+
+for f in g r i z
+do
+	m=4
+	om=`printf "%.2d" $m`
+	while [ $m -lt 13 ]
+	do
+		doit 2019 $m $f &
+		((m+=1))
+	done
+	m=3
+	om=03
+	y=2019
+	listobs.py --gain 1 --filt $f --allmonth $y-$m|build_negpixtab.py --igng --trim $trim --bias $f.b.$y.$om.fits.gz --descr "Filter $f $y $om" --count $outfile &
+done
+
+wait
+
+show_negpix_array.py --out ../images/$outfile.png $outfile
+

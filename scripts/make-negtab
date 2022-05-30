@@ -1,0 +1,28 @@
+#1 /bin/bash
+
+filter=${1?'No filter'}
+year=${2?'No year'}
+month=${3?'No month'}
+
+cd ~/src/astro/reports/remfits/tmp
+
+fmast=$filter.mast.f.$year.$month.fits.gz
+bmast=$filter.mast.b.$year.$month.fits.gz
+outlist=OL$$
+
+trap 'rm -f $outlist $fmast $bmast $filter-*.subb.*' 0 1 2 3 15
+
+fetchforb.pl --type b --filter $filter --year=$year --month=$month --out $bmast || exit 10
+fetchforb.pl --type f --filter $filter --year=$year --month=$month --out $fmast || exit 11
+
+>$outlist
+listobs.py --filter $filter --obj BarnardStar ProximaCenb Ross154 --allmonth $year-$month --ido|while read id
+do
+	outfile=$filter-$id.subb.fits.gz
+	convert_image.py --op sub --out $outfile $id $bmast
+	convert_image.py --op mult --sing mean $outfile $fmast
+	convert_image.py --op div $outfile $fmast
+	echo $outfile >>$outlist
+done
+count_neg_pixels.py --only --tot "$filter: $year/$month" --append --latex --out Negresults.txt `cat $outlist`
+

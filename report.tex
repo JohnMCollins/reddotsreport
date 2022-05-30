@@ -13,13 +13,16 @@
 \usepackage{multirow}
 \usepackage{longtable}
 \usepackage{caption}
+\usepackage{url}
 \usepackage[UKenglish]{datetime}
+\usepackage{titlesec}
 
 % Graphics type
 \usepackage[pdftex]{graphicx}
 
 \newcommand\prox{Proxima Centauri}
 \newcommand\bstar{Barnard's Star}
+\newcommand\ross{Ross 154}
 \newcommand\rdwarf{M-dwarf}
 \newcommand\ldwarf{L-dwarf}
 \newcommand{\bvec}[1]{\mbox{\boldmath ${#1}$}}
@@ -90,13 +93,26 @@
 \newdateformat{monthonly}{\monthname[\THEMONTH] \THEYEAR}
 
 \begin{document}
+%\setcounter{secnumdepth}{4}
+%\titleformat{\paragraph}
+%{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+%\titlespacing*{\paragraph}
+%{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
+\newcommand{\subsubsubsubsection}[1]{\subparagraph{#1}\mbox{}\\}
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+
 
 \input{titlestuff.tex}
 \input{introduction.tex}
 \input{obsdata.tex}
-\input{analysis.tex}
+\input{calibration.tex}
+\input{processing.tex}
 %\input{results.tex}
 \input{conclusions.tex}
+\input{database.tex}
 
 \bibliographystyle{apj}
 \bibpunct{(}{)}{;}{s}{,}{,}

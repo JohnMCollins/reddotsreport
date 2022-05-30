@@ -1,0 +1,119 @@
+\appendix 
+\section{Database and interfaces}
+\protect\label{section:database}
+
+In order, to facilitate the analysis of the data, I created a database
+constructed to be able to retrieve given observations or other data according to
+criteria as required, together with a set of Python interfaces, using
+\textit{Numpy} and other facilities including routines from \textit{Astropy}.
+
+The tables in this database are as follows.
+
+\begin{description}
+\item[obsinf] Information about observations.
+\item[iforbinf] Information about individual flat and bias files.
+\item[forbinf] Information about master flat and bias files.
+\item[objdata] Details of objects in the vicinity of target objects.
+\item[objalias] Alternative names for objects in \textbf[objdata].
+\item[objpm] Records of positions of objects with appreciable proper motions.
+\item[findresult] Notes of objects found in each observation.
+\item[fitsfile] Copies of the FITS files for observations in active
+consideration.
+\end{description}
+
+Not all of the FITS files are stored; only those with the visible light filters
+and of the target {\rdwarf} objects are saved. The Python routines are designed
+to transparently either fetch a FITS file from the database \textbf[fitsfile]
+table or fetch from the Red Dots project database (with optional local
+caching) as required.
+
+\subsection{The obsinf table}
+\protect\label{section:obsinftable}
+
+The \textbf{obsinf} table records details of observations taken from the
+relevant FITS file (which may be saved locally in the \textbf{fitsfile} table).
+
+Columns in this database give the following information, and a Python routine
+enables a selection of records of observations to be retrieved according to
+ranges of these criteria.
+
+\begin{description}
+\item[obsind] A unique integer used for internal cross-reference.
+\item[serial] The serial number of the observation at the Red Dots project.
+\item[date\_obs] The date and time of the observation.
+\item[object] The target object name
+\item[filter] The filter.
+\item[median] Median pixel value.
+\item[mean] Mean pixel value.
+\item[minv] Minimum pixel value.
+\item[maxv] Maximum pixel value.
+\item[std] Standard deviation of pixel value.
+\item[skew] Skewness of pixel value.
+\item[kurt] Kurtosis of pixel value.\footnote{Skewness and kurtosis are only
+recorded as these are used in construction of the master flat files and this is
+included for consistency with \textbf{iforbinf}.}
+\item[moonphase] Phase of moon as percentage.
+\item[moondist] Angular distance of moon from target.
+\item[airmass] Airmass to target,
+\item[quality] Quality assessment of observation, between 0 (rejected) and 1
+(best).
+\item[exptime] Exposure time.
+\end{description}
+
+\subsection{The iforbinf table}
+\protect\label{section:iforbinftable}
+
+The \textbf{iforbinf} table records details of individual flat or bias files
+taken from the relevant FITS file (which may be saved locally in the \textbf{fitsfile} table).
+
+Columns in this database give the following information, and a Python routine
+enables a selection of records of the file to be retrieved according to
+ranges of these criteria.
+
+\begin{description}
+\item[iforbind] A unique integer used for internal cross-reference.
+\item[typ] Type of file, \texttt{flat}, \texttt{bias} or \texttt{dark}.
+\item[serial] The serial number of the file at the Red Dots project.
+\item[date\_obs] The date and time for taking the file.
+\item[filter] The filter (only \texttt{g}, \texttt{i}, \texttt{r} or
+\texttt{z}).
+\item[median] Median pixel value.
+\item[mean] Mean pixel value.
+\item[minv] Minimum pixel value.
+\item[maxv] Maximum pixel value.
+\item[std] Standard deviation of pixel value.
+\item[skew] Skewness of pixel value.
+\item[kurt] Kurtosis of pixel value.\footnote{Skewness and kurtosis are only
+recorded as these are used in construction of the master flat files.}
+\end{description}
+
+\subsection{The objdata table}
+\protect\label{section:objdatatable}
+
+The \textbf{objdata} table records details of objects in the vicinity of one of
+the target objects).
+
+Columns in this database give the following information, and a Python routine
+enables objects in the vicinity of a given target to be retrieved, making
+appropriate allowances for proper motions (in conjunction with the
+\textbf[objpms] table).
+
+\begin{description}
+\item[ind] A unique integer used for internal cross-reference.
+\item[objname] An internal name for the object (short names such as
+\textbf{GJ551} for {\prox} are preferred).
+\item[dispname] A name to be used for displays. Latex format is used for easy
+insertion of results into Latex reports such as this, for example {\prox} is
+stored as \texttt{$\backslash$prox}.
+\item[objtype] Type of object, such as \texttt{Star}.
+\item[radeg] \texttt{J2000}-based Right Ascension in degrees.
+\item[decdeg]\texttt{J2000}-based Declination in degrees.
+\item[rapm] Proper motion in Right Ascension, in milli-arcseconds / year.
+\item[decpm]Proper motion in Declination, in milli-arcseconds / year.
+\item[apsize]Optimised aperture size, possibly fractional.
+\end{description}
+
+This is combined with various brightness information, in various bands, together
+with standard deviations. (These fields are currently not finalised).
+
+\clearpage

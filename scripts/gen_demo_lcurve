@@ -1,0 +1,61 @@
+#! /bin/bash
+
+trap 'rm -f $imfiles $flatfiles $biasfiles $objlocs $findreses' 0 1 2 3 15
+
+cd ~/src/astro/reports/remfits/tmp
+
+biasfiles=
+flatfiles=
+imfiles=
+objlocs=
+findreses=
+
+filters="g r"
+
+for filter in $filters
+do
+	biasfile=$filter.mastb0918.fits.gz
+	flatfile=$filter.mastf0918.fits.gz
+	fetchforb.pl --type b --filter $filter --year=2018 --month=9 --out $biasfile
+	fetchforb.pl --type f --filter $filter --year=2018 --month=9 --out $flatfile
+	biasfiles="$biasfiles $biasfile"
+	flatfiles="$flatfiles $flatfile"
+	for id in `listobs.py --date 16/9/2018:17/9/2018 --filt $filter --obj ProximaCenb --ido`
+	do
+		imfile=$filter.im.$id.fits.gz
+		imfiles="$imfiles $imfile"
+		convert_image.py --op sub --out $imfile $id $biasfile
+		convert_image.py --single mean --op mult $imfile $flatfile
+		convert_image.py --op div $imfile $flatfile
+	done
+done
+
+echo Finished getting images files, getting locations
+
+for imfile in $imfiles
+do
+	get_locations.py $imfile
+	objlocs="$objlocs ${imfile%.fits.gz}.objloc"
+done
+
+echo Finished getting locations, finding targets
+
+for imfile in $imfiles
+do
+	find_target.py $imfile
+	findreses="$findreses ${imfile%.fits.gz}.findres"
+done
+
+echo Finished finding results, finding others
+
+for imfile in $imfiles
+do
+	find_match_objects.py $imfile
+	disp_object_overlap.py --autoh $imfile
+	if [ $? -gt 1 ]
+	then echo Unable to clear clashes on $imfile;exit 10
+	fi
+done
+
+daylcurves.py --out ../images/demo_lcurve.png --by --obj GJ551 --filt gr $imfiles
+daylcurves.py --out ../images/demo_lcurve_refs.png --user --by --obj GJ551 --filt gr $imfiles

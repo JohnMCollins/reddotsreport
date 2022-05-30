@@ -1,27 +1,133 @@
 \section{Further work}
 \protect\label{section:worktocome}
 
-From the above, it is possible to draw the following program for further work.
+The following is the programme of work I need to undertake to ready the project
+to a state where serious science can be achieved.
+
+In all cases, the work to be done will need revisiting and refining and
+``iterating until convergence'' achieved.
+
+\subsection{Completion and improvement of work to date}
+\protect\label{section:fwimprovecompletion}
+
+This currently documents work in progress and the following needs to be achieved
+or at least an initial version complete before the project is ready to move
+forward.
+
+\subsubsection{Completion of revised calibration}
+\protect\label{section:fwcalib}
+
+I need to put together the work on revised bias and flat files, also of bad
+pixel identification, so as to minimise the loss of useful data, refining whether
+to discard a pixel altogether or assign a low weighting.
+
+Some parts, especially of limits to flat fields, may not be needed; there is
+plenty of scope for refinement.
+
+Also needed is a reasonable assessment of the uncertainty of any measurements
+taken.
+
+I need to insert new versions of Fig. \ref{fig:initgexample} and following
+into this report in section \ref{section:postcalibration} showing improvements
+made.in these fields, with a first version ready by the end of the first week in
+June 2022.
+
+\subsubsection{Revise identification of objects other than targets}
+\protect\label{section:fwtargets}
+
+I populated the database of objects from SIMBAD and GAIA EDR3 in May 2021 and
+this needs revising. Some of the objects are closer to each other than the
+resolution of the telescope, about 0.6 arc-seconds per pixel, can distinguish.
+
+The identification of close objects is currently slightly random due to the
+different orientations of the images and the order in which the search
+algorithm takes sources. It may be that there are larger common subsets of
+reference objects than are currently apparent. It may well be feasible to
+regard close objects as a composite object for the purposes of using as
+reference objects.
+
+This will need doing with some care and I would hope to be confident of the
+results for at least {\prox} by the end of June 2022.
+
+\subsubsection{Optimise apertures and determine magnitudes and variability of
+reference objects} \protect\label{section:fwoptap}
+
+In order to evaluate magnitudes over all the images, it is necessary to have
+confidence in the reference objects available in all of the images, rather than
+the common subset of objects which appears in all images, which becomes
+vanishingly small, especially for {\ross} and {\bstar} and for the \texttt{i}
+and \texttt{z} filters.
+
+This will need running through and comparing each object with each other object,
+this is more of a processing issue than anything.
+
+It would be desirable to build a picture of variability and compare this with the
+variability statistics from other sources, so that an uncertainty figure can
+be made for each target.
+
+Also needed is a standard optimised aperture size for calculation of the
+brightness of objects in any given image.
+
+Although this is a highly iterative process, I should hope to have a ``first
+pass" of this complete by mid-August 2022.
+
+\subsection{Extraction of data}
+\protect\label{section:fwextract}
+
+The whole object is to obtain believable light curves and observational data
+from the REM image data including values for uncertainty in which it is possible
+to have confidence and this is what I intend to present by the end of September
+2022.
+
+Obtaining periodic data is particularly important and a clear objective of this
+study would be to try to obtain this for \ross, (and consequently the
+inclination angle) although as discussed in Section \ref{section:introross}. with a maximum
+period of $3.5 \pm 1.5$ days, but with observation days months apart as shown in Fig. \ref{fig:rdwarfhist}, there will
+be a considerable number of aliases to contend with.
+
+Obviously too, an increase in the understanding of activity cycles of all three
+main targets will hopefully be a useful consequence of this.
+
+\subsection{Calculation of Barycentric dates, periodograms}
+\protect\label{section:fwbarycentric}
+
+Barcycentric dates need to be computed and inserted into the observation records
+before periodograms can be extracted. Then need to start producing periodograms
+of the data.
+
+\subsection{Variations and improvements}
+\protect\label{section:fwvariations}
+
+There are a substantial number of choices made in the analysis of the data and
+scope for seeing whether improvements in the accuracy can be brought about by
+tuning some of them. In mind are:
 
 \begin{enumerate}
-  \item Hotspot and bad pixel workarounds need to be created to eliminate
-  ``false positive'' identifications and minimise the negative pixels after
-  subtraction of the bias files. This is particularly important for the
-  \texttt{g} filter, but also necessary for the other filters.
-  \item The is a need to fine-tune the apertures to correctly select objects
-  and also to reject small bright points.
-  \item Need to check daily flat field images for features which have been noted
-  on some \textit{I need to give example}.
-  \item Need to fine-tune edge ``trimming'' with appropriate values for each
-  filter.
-  \item Need to build a database of objects and magnitudes for each filter so as
-  to be able to reliably use all the images regardless of the patch of sky in
-  use.
-  \item An attempt to merge results for all filters on a given day.
-  \item Better treatment of the background sky level. Possible avenues for improvement are suggested by using the
-      techniques in \citet{dubovsky17}.
-  \item Being less conservative in acceptance of reference objects.
-  \item Interpolation of the ADU counts of reference objects outside the image
-  frame.
+  \item Using a weighted sum in calculating peaks as opposed to summing the ADUs
+  and calculating the error.
+  \item Using sub-standard images with weightings.
+  \item Experiment with weightings of areas round the edges of the images, where
+  vignetting and other effects affect the exposures.
+  \item Using different sized apertures with different filters.
+  \item Selection of different reference objects with different filters.
+  \item Asking for changes to the exposure times.
+  \item Plotting of periods of other objects found in the frames.\footnote{It
+  might be necessary to revise the Barycentric dates in these cases but the
+  ones for the targets will probably be accurate enough, but must check.}
 \end{enumerate}
 
+\subsection{Incorporation of other data}
+\protect\label{section:fwincorp}
+
+There is a complete set of REMIR data taken simultaneously with all the other
+options, with calibration already done. It would be wasteful not to make
+maximums use of this for comparison and for incorporation into the results where
+possible.
+
+Reference object sets are a little more limited with these as the {\rdwarf}
+targets are so much brighter in the Infrared compared to the others.
+
+I also intend to look at other datasets and where possible undertake a similar
+task with these.
+
+\clearpage

@@ -1,0 +1,20 @@
+#1 /bin/bash
+
+trap 'rm -f ?.fits.gz ?.subb.fits.gz ?.mast?0320.fits.gz' 0 1 2 3 15
+
+cd ~/src/astro/reports/remfits/tmp
+
+for filter in g r i z
+do
+	fetchforb.pl --type b --filter $filter --year=2020 --month=3 --out $filter.mastb0320.fits.gz
+	fetchforb.pl --type f --filter $filter --year=2020 --month=3 --out $filter.mastf0320.fits.gz
+	convert_image.py --op sub --out $filter.subb.fits.gz `listobs.py --date 2020/3/09,08:56:14 --filter $filter --ido` $filter.mastb0320.fits.gz
+	convert_image.py --single mean --op mult --out $filter.fits.gz $filter.subb.fits.gz $filter.mastf0320.fits.gz
+	convert_image.py --op div $filter.fits.gz $filter.mastf0320.fits.gz
+done
+
+#image4_display.py --grey imdisp12rev --outfig ../images/init4exnoflat.png [griz].subb.fits.gz
+image4_display.py --grey imdisp12rev --outfig ../images/init4example20.png [griz].fits.gz
+#listobs.py --date 2020/9/17,02:12:40 image4_display.py --grey imdisp12rev  --outfig ../images/rawproxeg.png
+
+#count_neg_pixels.py --out ../tables/negexample --force --latex ?.fits.gz

@@ -1,0 +1,57 @@
+#! /bin/bash
+
+trap 'rm -f $noflatfiles $imfiles $flatfiles $biasfiles' 0 1 2 3 15
+
+cd ~/src/astro/reports/remfits/tmp
+
+biasfiles=
+flatfiles=
+noflatfiles=
+imfiles=
+
+for filter in g r i z
+do
+	biasfile=$filter.mastb0918.fits.gz
+	flatfile=$filter.mastf0918.fits.gz
+	fetchforb.pl --type b --filter $filter --year=2018 --month=9 --out $biasfile
+	fetchforb.pl --type f --filter $filter --year=2018 --month=9 --out $flatfile
+	biasfiles="$biasfiles $biasfile"
+	flatfiles="$flatfiles $flatfile"
+	
+	noflat=$filter.subb.fits.gz
+	imfile=$filter.fits.gz
+	noflatfiles="$noflatfiles $noflat"
+	imfiles="$imfiles $imfile"
+	
+	convert_image.py --op sub --out $noflat `listobs.py --date 2018/9/17,02:12:40 --filter $filter --ido` $biasfile
+	convert_image.py --single mean --op mult --out $imfile $noflat $flatfile
+	convert_image.py --op div $imfile $flatfile
+done
+
+image4_display.py --grey imdisp12rev --outfig ../images/init4exnoflat.png $noflatfiles
+image4_display.py --grey imdisp12rev --outfig ../images/init4example.png $imfiles
+count_neg_pixels.py --out ../tables/negexample --force --latex $imfiles
+
+rm -f $imfiles
+imfiles=
+
+for filter in g r i z
+do
+	biasfile=$filter.mastb0320.fits.gz
+	flatfile=$filter.mastf0320.fits.gz
+	fetchforb.pl --type b --filter $filter --year=2020 --month=3 --out $biasfile
+	fetchforb.pl --type f --filter $filter --year=2020 --month=3 --out $flatfile
+	
+	biasfiles="$biasfiles $biasfile"
+	flatfiles="$flatfiles $flatfile"
+	imfile=$filter.fits.gz
+	imfiles="$imfiles $imfile"
+
+	convert_image.py --op sub --out $imfile `listobs.py --date 2020/3/09,08:56:14 --filter $filter --ido` $biasfile
+	convert_image.py --single mean --op mult $imfile $flatfile
+	convert_image.py --op div $imfile $flatfile
+done
+
+image4_display.py --grey imdisp12rev --outfig ../images/init4example20.png $imfiles
+
+

@@ -1,0 +1,32 @@
+#! /bin/bash
+
+filter=${1?'Please give filter g i r z'}
+target=${2?'Please give target'}
+day=${3?'Please give day'}
+month=${4?'Please give month'}
+year=${5?'Please give year'}
+ap=${6?'Please give aperture size'}
+
+cd ~/src/astro/reports/remfits/tmp
+
+trap "rm -f $filter.mast.?.fits.gz $filter.fits.gz $filter.findres" 0 1 2 3 15
+
+for t in f b
+do
+	fetchforb.pl --type $t --filter $filter --year=$year --month=$month --out $filter.mast.$t.fits.gz
+done
+
+>RES.$filter
+
+listobs.py --date $year/$month/$day --obj "$target" --filt $filter --idonly |while read id
+do
+	convert_image.py --force --op sub --out $filter.fits.gz $id $filter.mast.b.fits.gz
+	convert_image.py --single mean --op mult $filter.fits.gz $filter.mast.f.fits.gz
+	convert_image.py --op div $filter.fits.gz $filter.mast.f.fits.gz
+	if find_objects.py --apsize $ap --force --inlib $filter.fits.gz $filter
+	then
+		#opt_apertures.py --plot --inlib --cutoff 0.5 $filter.fits.gz $filter >/dev/null
+		head -1 $filter.findres >>RES.$filter
+	fi
+done
+
