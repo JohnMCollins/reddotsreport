@@ -672,118 +672,31 @@ selecting pixels in the flat fields with very low counts and those in the dark
 frames with very high counts (but the criteria for ``low'' and ``high'' counts
 in those files are not defined). In \citet{briesemeister18} pixels in the
 constructed flat fields with values less than 0.5 or greater than 1.5 are
-considered to be bad. A comprehensive study of types of bad pixels is shown in
-the recently-published \citet{maslennikova20}.
+considered to be bad.
 
-There were no examples which could be found of ``dead'' pixels, i.e. ones which appeared to be completely
-unresponsive at all times, however some are particularly noisy, some are
-non-linear and some perform badly, in that they ``drop out'' and give a low
-reading from time to time.
+A comprehensive study of the quality of pixels is described in the
+recently-published \citet{maslennikova20}. Pixels are described as
+\textbf{Normal}, \textbf{Cold}. \textbf{Warm}. \textbf{Dead}, \textbf{Hot} and
+\textbf{Inverse} according to the responses. The pixels on the ROSS2 telescope
+CCD do not fit neatly into these brackets, apart from the \textbf{Normal} ones.
 
-There are three types of poor-quality pixels which are catered for here.
+For the purposes of this study, the following definitions are used.
 
-\begin{enumerate}
-\item Particularly noisy pixels, which can be identified from the bias files.
-\item Pixels which give seemingly random values, totally out of line with their
-neighbours, usually a low value.
-\item Pixels which are non-linear or which behave significantly differently from
-their neighbours.
-\end{enumerate}
+\begin{description}
+\item[Normal] pixels are those which are clearly well-behaved with a linear
+response within 10\% of saturation.
+\item[Bad] pixels are closest to \textbf{Dead} pixels as defined in 
+\citet{maslennikova20}. Included are those with consistent high levels of noise,
+with the standard deviation on the bias level over 5 times the standard
+deviation and those.
+\item[Unreliable] pixels are ones which whilst otherwise normal, can randomly
+give very high or low readings.
+\end{description}
 
-\subsubsection{Possible unreliable pixels shown on bias files}
-\protect\label{section:badpixbias}
-
-The mean and standard deviation of each pixel on the CCD actually used for the
-observations was made by taking all the daily bias files, eliminating those with
-pixel values below 200 counts or above 5,000 counts (this eliminated 12\% of the files for the \texttt{g} filter, 13\% of the files for the\texttt{i} filter,
-and 4\% for the \texttt{r} and \texttt{z} filters, 92\% overall) and locating
-each pixel on the CCD.
-In Fig. \ref{fig:mean_allbiaslim250_5000} is shown the mean values over the whole of the
-CCD and in \ref{fig:std_allbiaslim250_5000} the standard deviations.
-
-\begin{figure}[!htbp]
-\begin{center}
-\includegraphics[scale=0.3]{images/mean_allbiaslim250_5000.png}
-\end{center}   
-\caption{This figure shows the distribution of mean values of the bias counts
-for each pixel on the CCD obtained by taking all the daily bias files, ignoring
-those with minimum values below 200 or above 5,000. The four areas used are the
-same as in all the other figures, i.e. top left is that used by the \texttt{i}
-filter, the top right corresponds to the \texttt{g} filter, the bottom left
-that used by the \texttt{z} filter and the bottom right that used by the
-\texttt{r} filter.} \protect\label{fig:mean_allbiaslim250_5000}
-\end{figure}
-
-\begin{figure}[!htbp]
-\begin{center}
-\includegraphics[scale=0.3]{images/std_allbiaslim250_5000.png}
-\end{center}   
-\caption{This figure shows the distribution of standard deviations of the
-bias counts for each pixel on the CCD obtained by taking all the daily bias files, ignoring
-those with minimum values below 200 or above 5,000. The four areas used are the
-same as in all the other figures, i.e. top left is that used by the \texttt{i}
-filter, the top right corresponds to the \texttt{g} filter, the bottom left
-that used by the \texttt{z} filter and the bottom right that used by the
-\texttt{r} filter.}
-\protect\label{fig:std_allbiaslim250_5000}
-\end{figure}
-\clearpage
-
-It can be seen that the noise level in individual pixels is spread evenly, but
-the base bias level of the pixels holds to a consistent pattern which mostly
-affects the \texttt{i} and \texttt{g} filters at the top of the images. The
-columns (by which readouts are taken from the CCD are easily recognisable in the daily bias files, but the
-rows not nearly so much. It is perhaps unfortunate that this applies to the
-\texttt{g} filter as the number and brightness of the objects is generally
-better for this filter.
-
-\subsubsection{Pixels with random or significantly out-of-line values}
-\protect\label{section:randpixels}
-
-In Fig. \ref{fig:flatdemobadpix} is shown a daily flat file and in Fig.
-\ref{fig:flatdemozoom} part zoomed in to show pixels which are significantly out
-of line with the surrounding pixels.
-
-%image_display.py --grey flatdisp F:122012
-\begin{figure}[!htbp]
-\begin{center}
-\includegraphics[scale=1]{images/flatdemo2022.png}
-\end{center}   
-\caption{This shows the brighest daily flat file made on 24 May 2022 at 22:04:37
-for the \texttt{g} filter. It will be seen that that there are various dark
-points (in this inverse image appearing as bright points) where the pixels are
-signficantly lower then their neighbours.} \protect\label{fig:flatdemobadpix}
-\end{figure}
-
-\begin{figure}[!htbp]
-\begin{center}
-\includegraphics[scale=1]{images/flatdemo2022z.png}
-\end{center}   
-\caption{This is a close-up of the daily flat file depicted in Fig.
-\ref{fig:flatdemobadpix} showint part of the image particularly affected by
-unreliable pixels.} \protect\label{fig:flatdemozoom}
-\end{figure}
-
-These pixels are eliminated from consideration and where they overlap with
-objects are replaced by the mean of the surrounding 8 pixels.\footnote{In just
-a few cases consecutive pixels are eliminated in this way, usually in columns
-on the array, and this may be 6 or 7 adjacent pixels.}
-
-\subsubsection{Unreliable pixels}
-\protect\label{section:unreliable pixels}
-
-There are some pixels which some of the time behave normally but occasionally
-are unresponsive, resulting in some negative values after the bias value is
-removed.
-
-It is possible to weed these out by first excluding the consistently unreliable
-pixels described in Section \ref{section:randpixels} above, which are easy to
-detect, having uncertainty over 5 standard deviations, and then excluding pixels
-as described in \citet{allers20}, however by limiting the exclusion to 15\%
-rather than 10\%.
-
-It might be acceptable to include these pixels when they behave normally, but it
-does not appear to be worthwhile at the present time.
+There are very few examples, in the order of 25 pixels spread over the used area
+of the array, which qualify as \textbf{bad}, but the pixels which are
+\textbf{unreliable} are of the order of about 11,000 over the array, spread over
+the 4 areas used.
 
 \subsubsection{Total bad pixel statistics}
 \protect\label{section:totalbadpix}

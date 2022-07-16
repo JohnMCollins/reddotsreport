@@ -16,15 +16,15 @@ tabs1:
 	#listlllllmake_cutofftables.py  --mean 6000:61000 --std :10000 --minv 200: --maxv :65000 --prec=3 --outf tables/selectedflats.tex
 
 pngimages1:
-	show_filter_areas.py --ticksize 10 --out images/showusedccd.png
-	listobjects_pie.py --targ --dith -1 --exp=.1 --col 'skyblue,yellow,limegreen,pink' --title='' --out images/allobspie.png --ticks=13
+	REMGEOMFMT=Report show_filter_areas.py --ticksize 10 --out images/showusedccd.png
+	REMGEOMFMT=Report listobjects_pie.py --targ --dith -1 --exp=.1 --col 'skyblue,yellow,limegreen,pink' --title='' --out images/allobspie.png --ticks=13
 	#disp_obj_dates.py --targ P --height 8 --bins 50 --out images/proxhist.png
 	#disp_obj_dates.py --targ B --height 8 --bins 50 --out images/bshist.png
 	#disp_obj_dates.py --targ R --height 8 --bins 50 --out images/rosshist.png
-	disp_obj_dates_together.py --height 10 --out images/rdwarfhist.png
-	disp_pms.py --out images/pmprox.png --rarange 0.015 --decrange 0.002 --yrot 45 GJ551
-	disp_pms.py --out images/pmbstar.png --rarange 0.002 --decrange 0.02 --yrot 45 GJ699
-	disp_pms.py --out images/pmross.png --rarange 0.015 --decrange 0.002 --yrot 45 GJ729
+	REMGEOMFMT=Report disp_obj_dates_together.py --height 10 --out images/rdwarfhist.png
+	REMGEOMFMT=Report disp_pms.py --out images/pmprox.png --rarange 0.015 --decrange 0.002 --yrot 45 GJ551
+	REMGEOMFMT=Report disp_pms.py --out images/pmbstar.png --rarange 0.002 --decrange 0.02 --yrot 45 GJ699
+	REMGEOMFMT=Report disp_pms.py --out images/pmross.png --rarange 0.015 --decrange 0.002 --yrot 45 GJ729
 	
 pngimages2:
 	scripts/make-initexample
