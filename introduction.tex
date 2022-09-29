@@ -19,7 +19,7 @@ The first observations of {\rdwarf} stars took place in mid-2017. All
 observations ceased on March 2020 due to the Coronavirus pandemic but were
 restarted in October 2020 and have continued up until the time of writing.
 
-The objectives of the work documented in this report are:
+The original objectives of the work documented in this report are:
 \begin{enumerate}
   \item To set up a pipeline for automatic analysis and processing of the data.
   \item To evaluate to what degree reliable photometry, together with an
@@ -28,6 +28,13 @@ The objectives of the work documented in this report are:
   \item If accuracy and reliability of the photometry permit, obtain periodic
   data for the target stars of particular interest.
 \end{enumerate}
+
+Other supplementary objectives came to light over the course of the work. An
+early example of this was obtaining a rotation period for \ross. As noted in
+Section \ref{section:introross}, no rotation period is currently reported for
+\ross, so an early benchmark was identified by attempting to recover this period
+for various sources and comparing the result with that obtained from various
+iterations of the data analysis undertaken.
 
 \subsection{The REM telescope}
 \protect\label{section:remscope}
@@ -320,19 +327,35 @@ Due to the high proper motion, care has to be taken to correctly take this into 
 proper motion of $-637.02$ mas/yr in Right Ascension and  {–}191.64 mas/yr
 in Declination and a radial velocity of {–}10.7 km/s \citep{vanleeuwen07}.
 
-The strong activity is noted in \citet{wargelin08}. Previously, in
-\citet{jarrett76}, an activity cycle of about 2 days was reported.
+The strong activity is noted in \citet{wargelin08}, who also quote a value for
+{\vsini} of of $3.5 \pm 0.5$ km/s obtained from \citet{johnskrull96} stating
+that the fast rotation period is indicative of an age of less than 1 Gyr.
+The period of rotation is not stated there, but if
+the radius of $0.24 \pm 0.06$ solar given in
+\citet{johnson83}\footnote{\citet{johnson83} does not explicitly state the
+uncertainty, but gives a limit of 25\%.} is assumed,
+this would given an upper limit of $3.5 \pm 1.0$ days, less if the angle of
+inclination was less than 90\degree, by a factor of the sine of the inclination.
 
-Nowhere reports a rotation period, however a maximum figure for the rotation
-period of $3.5 \pm 1.5$ days can be calculated from the rotational
-velocity (\vsini) of $5 \pm 1.5$ km/s given in \citet{wargelin08} and the radius of 0.24 solar given in
-\citet{johnson83}. If the inclination is other than 90\degree the rotation
-period will be shorter by a factor of the sine of the inclination angle.
-It would be useful to obtain a firm figure for the rotation period as no planets
-have been reported for {\ross} and a low inclination angle might be one of the
-reasons.
+There are some discrepancies in the reported values of \vsini, in that
+\citet{reiners18} report a value of $3.0 \pm 1.5$ km/s, whilst
+\citet{hojjatpanah19} report a figure of $5.20 \pm 0.91$, which would set an
+upper limit on the period of $2.3 \pm 0.9$ days.
 
-\citet{wargelin08} also state that the fast rotation period is indicative of an age of less than 1 Gyr.
+Calculations of the period range from 2.857 days or 2.843 days (taken from K2
+or MEarth respectively) in \citet{newton18}, $2.87 \pm 0.01$ days in
+\citet{diezalonso19} and $4.7 \pm 2.3$ days in \citet{reiners18}. Previously,
+in \citet{jarrett76}, an activity cycle of about 2 days was reported, but
+possibly this might refer to the rotation period.
+
+It would be useful to confirm or refine the figure for
+the rotation period as no planets have been reported for {\ross}
+and a low inclination angle might be one of the
+reasons for the difficulty in detection. This would be indicated if a much
+shorter rotation period was detected than would be indicated by calculating the
+period from $2\pi r / v$. Accordingly, an early focus was set in obtaining a
+value of the rotation period for {\ross} from various sources and attempting to
+obtain figures from the ROSS2 data.
 
 Of the observations
 listed in Table \ref{table:filtersnums}, the corresponding observations for
